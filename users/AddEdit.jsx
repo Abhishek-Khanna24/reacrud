@@ -85,72 +85,94 @@ function AddEdit({ history, match }) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-            <h1>{isAddMode ? 'Add User' : 'Edit User'}</h1>
+            <h1>{isAddMode ? 'Add order' : 'Edit Order'}</h1>
             <div className="form-row">
+                <div className="form-group col-5">
+                    <label>street_address</label>
+                    <input name="street_address" type="text" ref={register} className={`form-control ${errors.street_address ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.street_address?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>city</label>
+                    <input name="city" type="text" ref={register} className={`form-control ${errors.street_address ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.city?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>state</label>
+                    <input name="state" type="text" ref={register} className={`form-control ${errors.street_address ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.state?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>postal_code</label>
+                    <input name="postal_code" type="text" ref={register} className={`form-control ${errors.street_address ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.postal_code?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>country</label>
+                    <input name="country" type="text" ref={register} className={`form-control ${errors.country ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.country?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>year_of_birth</label>
+                    <input name="year_of_birth" type="text" ref={register} className={`form-control ${errors.street_address ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.year_of_birth?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>description</label>
+                    <input name="description" type="text" ref={register} className={`form-control ${errors.description ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.description?.message}</div>
+                </div>
                 <div className="form-group col">
-                    <label>Title</label>
-                    <select name="title" ref={register} className={`form-control ${errors.title ? 'is-invalid' : ''}`}>
+                    <label>company Name</label>
+                    <select name="data_collected" ref={register} className={`form-control ${errors.data_collected ? 'is-invalid' : ''}`}>
                         <option value=""></option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Ms">Ms</option>
+                        <option value="ACME">ACME</option>
+                        <option value="MAXO">MAXO</option>
                     </select>
-                    <div className="invalid-feedback">{errors.title?.message}</div>
+                    <div className="invalid-feedback">{errors.data_collected?.message}</div>
                 </div>
                 <div className="form-group col-5">
-                    <label>First Name</label>
-                    <input name="firstName" type="text" ref={register} className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} />
-                    <div className="invalid-feedback">{errors.firstName?.message}</div>
+                    <label>customer_id</label>
+                    <input name="customer_id" type="text" ref={register} className={`form-control ${errors.customer_id ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.customer_id?.message}</div>
                 </div>
                 <div className="form-group col-5">
-                    <label>Last Name</label>
-                    <input name="lastName" type="text" ref={register} className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} />
-                    <div className="invalid-feedback">{errors.lastName?.message}</div>
+                    <label>order_date</label>
+                    <input name="order_date" type="text" ref={register} className={`form-control ${errors.order_date ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.order_date?.message}</div>
                 </div>
             </div>
             <div className="form-row">
                 <div className="form-group col-7">
-                    <label>Email</label>
-                    <input name="email" type="text" ref={register} className={`form-control ${errors.email ? 'is-invalid' : ''}`} />
-                    <div className="invalid-feedback">{errors.email?.message}</div>
+                    <label>shipping_date</label>
+                    <input name="shipping_date" type="text" ref={register} className={`form-control ${errors.shipping_date ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.shipping_date?.message}</div>
                 </div>
-                <div className="form-group col">
-                    <label>Role</label>
-                    <select name="role" ref={register} className={`form-control ${errors.role ? 'is-invalid' : ''}`}>
-                        <option value=""></option>
-                        <option value="User">User</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                    <div className="invalid-feedback">{errors.role?.message}</div>
+                <div className="form-group col-7">
+                    <label>product_id</label>
+                    <input name="product_id" type="text" ref={register} className={`form-control ${errors.product_id ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.product_id?.message}</div>
                 </div>
+                
             </div>
-            {!isAddMode &&
-                <div>
-                    <h3 className="pt-3">Change Password</h3>
-                    <p>Leave blank to keep the same password</p>
-                </div>
-            }
             <div className="form-row">
-                <div className="form-group col">
-                    <label>
-                        Password
-                        {!isAddMode &&
-                            (!showPassword
-                                ? <span> - <a onClick={() => setShowPassword(!showPassword)} className="text-primary">Show</a></span>
-                                : <em> - {user.password}</em>
-                            )
-                        }
-                    </label>
-                    <input name="password" type="password" ref={register} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-                    <div className="invalid-feedback">{errors.password?.message}</div>
+              <div className="form-group col-5">
+                    <label>product_category</label>
+                    <input name="product_category" type="text" ref={register} className={`form-control ${errors.product_category ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.product_category?.message}</div>
                 </div>
-                <div className="form-group col">
-                    <label>Confirm Password</label>
-                    <input name="confirmPassword" type="password" ref={register} className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`} />
-                    <div className="invalid-feedback">{errors.confirmPassword?.message}</div>
+                <div className="form-group col-5">
+                    <label>name</label>
+                    <input name="name" type="text" ref={register} className={`form-control ${errors.name ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.name?.message}</div>
+                </div>
+                <div className="form-group col-5">
+                    <label>gender</label>
+                    <input name="gender" type="text" ref={register} className={`form-control ${errors.gender ? 'is-invalid' : ''}`} />
+                    <div className="invalid-feedback">{errors.gender?.message}</div>
                 </div>
             </div>
+            
             <div className="form-group">
                 <button type="submit" disabled={formState.isSubmitting} className="btn btn-primary">
                     {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
